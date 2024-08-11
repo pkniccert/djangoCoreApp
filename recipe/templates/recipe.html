@@ -1,0 +1,33 @@
+{% extends "layouts/master.html" %}
+{% block main %}
+
+<div class="card" style="margin: 20px;">
+    <div class="card-header">
+     Add New Recipe
+    </div>
+    <div class="card-body">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp">
+              <div id="nameHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+                <label for="file" class="form-label">Image</label>
+                <input type="file" class="form-control" id="file" name="file" aria-describedby="nameHelp">
+              </div>
+            <div class="mb-3">
+              <label for="desc" class="form-label">Description</label>
+              <textarea class="form-control" name="description"></textarea>
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+    </div>
+  </div>
+
+  {% endblock %}

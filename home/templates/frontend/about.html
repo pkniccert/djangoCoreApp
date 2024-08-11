@@ -1,0 +1,40 @@
+{% extends "layouts/master.html" %}
+{% block main %}
+
+<div class="card" style="margin: 20px;">
+    <div class="card-header">
+      About Us
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>Vote</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                  <td>{{ student.name }} </td>
+                  <td>{{ student.phone }} </td>
+                  <td>{{ student.email }} </td>
+                  <td>{{ student.age }}</td>
+                  <td {% if student.age >= 18 %} style="color:green" {% else %} style="color:red" {% endif %}>
+                      {% if student.age >= 18%}
+                      Adult
+                      {% else %}
+                      Child
+                      {% endif %}
+                  </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  {% endblock %}
