@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from recipe.models import *
 # Create your views here.
 
@@ -15,5 +15,6 @@ def addRecipe(request):
       recipe_descrition=description,
       recipe_image=image
      )
+     return redirect('/recipe/')
     #  print(name, description, image)
     return render(request, "recipe.html", context)
