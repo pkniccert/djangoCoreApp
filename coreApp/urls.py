@@ -18,12 +18,23 @@ from django.contrib import admin
 from django.urls import path
 from home.views import *
 from recipe.views import *
+from django.conf.urls.static import static
+from django.conf import settings
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('', home, name="home"),
     path('recipe/', addRecipe, name="addRecipe"),
+    path('recipe/delete/<id>/', delete_recipe, name="delete_recipe"),
+    path('recipe/update/<id>/', update_recipe, name="update_recipe"),
     path('about/', about, name="about"),
     path('contact/', contact, name="contact"),
     path('message/', message, name="message"),
     path('admin/', admin.site.urls),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
+    
+urlpatterns += staticfiles_urlpatterns()

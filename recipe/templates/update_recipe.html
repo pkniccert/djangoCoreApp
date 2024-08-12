@@ -1,0 +1,33 @@
+{% extends "layouts/master.html" %}
+{% block main %}
+
+<div class="card" style="margin: 20px;">
+    <div class="card-header">
+     Update Recipe
+    </div>
+    <div class="card-body">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name" value="{{ recipe.recipe_name }}" name="name">
+            </div>
+            <div class="mb-3">
+                <label for="file" class="form-label">Image <img src="/media/{{ recipe.recipe_image }}" width="100" height="60">
+                </label>
+                <input type="file" class="form-control" id="file" name="file" aria-describedby="nameHelp">
+            </div>
+            <div class="mb-3">
+              <label for="desc" class="form-label">Description</label>
+              <textarea class="form-control" name="description">{{ recipe.recipe_descrition }}</textarea>
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+    </div>
+  </div>
+
+  {% endblock %}
