@@ -1,0 +1,51 @@
+{% extends "layouts/master.html" %}
+{% block main %}
+
+<div class="card" style="margin: 20px;">
+    <div class="card-header">
+       <b>Manage Students Marks</b>
+    </div>
+    <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name:</th>
+                        <td colspan="2">{{ marks.first.student }}</td>
+                    </tr>
+                    <tr>
+                        <th>Rank:</th>
+                        <td colspan="2">{{ marks.first.student.studentreportcard.first.student_rank }}</td>
+                    </tr>
+                    <tr>
+                        <th>Total:</th>
+                        <td colspan="2">{{ total_marks.total_marks }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date of Results:</th>
+                        <td colspan="2">{{ marks.first.student.studentreportcard.first.date_of_report_card_generation }}</td>
+                    </tr>
+                    <tr>
+                        <th>Sr.No.</th>
+                        <th>Subject</th>
+                        <th>Marks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    {% for mark in marks %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ mark.subject }}</td>
+                        <td>{{ mark.marks }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+    {% endblock %}

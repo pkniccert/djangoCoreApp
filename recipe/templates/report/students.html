@@ -1,0 +1,84 @@
+{% extends "layouts/master.html" %}
+{% block main %}
+
+<div class="card" style="margin: 20px;">
+    <div class="card-header">
+       Manage Students
+    </div>
+    <div class="card-body">
+        <form>
+            <div class="mb-3">
+                <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                        <label for="search" class="col-form-label">Search</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" id="search" name="search"
+                            class="form-control">
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary">
+                            Search
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </form>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Sr.No</th>
+                        <th>Student ID</th>
+                        <th>Department</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Age</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>
+                            <a href="{% url 'see_marks' student.student_id %}">
+                            {{ student.student_id }}
+                        </a>
+                        </td>
+                        <td>{{ student.department }}</td>
+                        <td>{{ student.name }}</td>
+                        <td>{{ student.email }}</td>
+                        <td>{{ student.phone }}</td>
+                        <td>{{ student.age }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end">
+                  {% if students.has_previous %}
+                  <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{ students.previous_page_number }}">previous</a></li>
+              {% endif %}
+      
+              <li class="page-item disabled">
+                <a class="page-link" href="#"> 
+                    Page {{ students.number }} of {{ students.paginator.num_pages }}.
+                </a>
+              </li>
+      
+              {% if students.has_next %}
+              <li class="page-item"><a class="page-link" href="?page={{ students.next_page_number }}">next</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ students.paginator.num_pages }}">last &raquo;</a></li>
+              {% endif %}
+                </ul>
+              </nav>
+           
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+    {% endblock %}
