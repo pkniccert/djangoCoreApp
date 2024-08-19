@@ -32,7 +32,7 @@ class StudentAdmin(admin.ModelAdmin):
     list_display = ('student_id', 'name', 'email', 'phone', 'age', 'department')
 
     # Optionally, you can add filters and search capabilities
-    list_filter = ('department', 'age')
+    list_filter = ('department', 'is_deleted')
     search_fields = ('name', 'student_id', 'email')
     ordering = ('-age',)
 

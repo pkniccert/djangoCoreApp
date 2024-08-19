@@ -1,5 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+
+
+class RecipesManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(is_deleted = False)
+
+
+class StudentsManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(is_deleted = False)
 
 # Create your models here.
 
@@ -9,6 +22,10 @@ class Recipe(models.Model):
     recipe_descrition = models.TextField()
     recipe_image = models.ImageField(upload_to="uploads/recipes/")
     recipe_view_count = models.IntegerField(default=1)
+    is_deleted = models.BooleanField(default=False)
+
+    objects = RecipesManager()
+    admin_objects = models.Manager()
 
 class Department(models.Model):
     department = models.CharField(max_length=100)
@@ -38,6 +55,10 @@ class Student(models.Model):
     phone = models.CharField(max_length=100)
     age = models.IntegerField()
     address = models.TextField(null=True, blank=True)
+    is_deleted = models.BooleanField(default=False)
+
+    objects = StudentsManager()
+    admin_objects = models.Manager()
 
     def __str__(self) -> str:
         return self.name

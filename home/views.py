@@ -1,8 +1,20 @@
 from django.shortcuts import render
-
 from django.http import HttpResponse
+from .utils import send_email_to_client, send_email_with_attachement
+from django.conf import settings
+from home.models import Car
+import random
 
 def home(request):
+#  send_email_to_client()
+#  subject = "This is django test mail"
+#  message = "Hi Pavan, This is django test mail."
+#  recipient_list = ["pkumarrathor@gmail.com"]
+#  file_path = f"{settings.BASE_DIR}/test.txt"
+#  send_email_with_attachement(subject, message, recipient_list, file_path)
+
+# using Signals
+#  Car.objects.create(car_name=f"Nexon-{random.randint(0,100)}")
  context = {'page':'Django | Home'}
  return render(request,"frontend/index.html", context)
 
